@@ -1,0 +1,66 @@
+1: Understand_Concepts
+The premise behind this project is to predict the type of iris ('setosa' 'versicolor' 'virginica) based on the features. 
+We are using the KNN classifier for the model of this program. The KNN classifers simply uses the neighbors and predicts based on the resemblances compare to similar features. 
+
+-----------------------------------------------------------------------------------------------------------------------
+
+2: KNN_TestTrain
+We use the log model. We learned on it from Andrew Ng's course. They fundamental premise behind the log model is that it's a classification model. Thus, there are discrete possibilities. 
+
+Using the "metrics.accuracy_score(y_trgt, y_pred)", we've learned the KNN classifier is more accurate than the log model. We have to keep in mind that this is predicting the same observations towards the target variable. 
+
+In addition, we are splitting the dataset into the train and test set. This will allow us to build a model from the train dataset and then check our accuracy on the test set.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+3: Python_Regression
+sns.pairplot helps create multiple graphs.
+NOTE: This model produces a lower RMSE. The lower the RMSE is the better. 
+
+-----------------------------------------------------------------------------------------------------------------------
+
+4: Cross_Validation
+Introducing k-fold.
+K-fold is vital. It divides the dataset given the desired times by the user. If say it's 10, we divide the data into 10 parts, and each part will be the the testing set while the other 9/10 will be the training set. This is done with every 1/10 of the dataset. 
+
+Introducing cross_val_score:
+K-fold simplies divides the data, but the cross-val-score allows us to to find the score (prediction of each fold). So if the cross_val_score is 5, we use 1/5th of the data as the test. The other 4/5th is used to model, which then tries to predict the 1/5th of the data. It compares it to the actual test set since we have access to the data. We can use the average to find the middle ground of all the data and find an average, how well does the model fit. 
+
+-----------------------------------------------------------------------------------------------------------------------
+
+5: Model_Parameters
+Introducing GridSearchCV:
+The code: 
+    grid = GridSearchCV(knn, param_grid, cv=10, scoring='accuracy')
+Explanation:
+    This code is similar to the previous method we were doing. Here, we pass the knn, cv and scoring parameters like before. The difference is that we pass a param_grid which has a a key 'n_neighbors' with a list value from 1 through 31.
+
+A good way to figure out the work, we can do the following code:
+    grid.best_score_, grid.best_params_, grid.best_estimator_
+    
+Searching multiple parameters simultaneously
+    In the KNN classifier, we two different type of parameter. For example, the use the example of uniform and distance. The uniform provides each neighbor the same weight while the distance parameter gives a higher weight to the closer neighbor than the neighbors that are further away. 
+    
+Introducing GridSearchCV: 
+Because the computation can be tedious and cost efficient, this method does the same as GridSearchCV but you can control a lot of the computation to create a randomized computation that won't require as much as computation as GridSearchCV
+
+-----------------------------------------------------------------------------------------------------------------------
+
+6: Evaulate_Classifiers
+Model evaluation metrics
+Regression problems: Mean Absolute Error, Mean Squared Error, Root Mean Squared Error
+Classification problems: Classification accuracy
+
+Introducing Confusion Matrix:
+True Positives, False Positives, True Negatives, False Negatives
+Classification Accuracy: The number of times it correctly predicted over all the observations
+Classifcation Error (Misclassification Error): The number of times it incorrectly predicted over all the observations
+
+ROC Curve and Area Under the Curve (AUC), AUC Curve
+
+-----------------------------------------------------------------------------------------------------------------------
+
+
+
+
+

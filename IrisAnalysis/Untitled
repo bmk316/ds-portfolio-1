@@ -1,0 +1,41 @@
+def Parse_Data(raw_data):
+    dict_data = {
+        'sepal_len': [],
+        'sepal_wdt': [],
+        'petal_len': [],
+        'petal_wdt': [],
+        'class_type': []
+    }
+    temp_list = []
+    mod_list = []
+
+    for line in (raw_data.find('p')):
+        mod_line = line.split('\n')
+        temp_list.append(mod_line)
+
+    for element in (temp_list[0]):
+        mod_element = element.split(',')
+        if len(mod_element)!=1:
+            mod_list.append(mod_element)
+
+    for i in range(len(mod_list)):
+        dict_data['sepal_len'].append(float(mod_list[i][0]))
+        dict_data['sepal_wdt'].append(float(mod_list[i][1]))
+        dict_data['petal_len'].append(float(mod_list[i][2]))
+        dict_data['petal_wdt'].append(float(mod_list[i][3]))
+        dict_data['class_type'].append(mod_list[i][4])
+    Create_Dateframe(dict_data)
+
+def File_Name(url):
+    request = requests.get(url)
+    data = request.text
+    soup = BeautifulSoup(data, "lxml")
+    Parse_Data(soup)
+
+def main():
+    url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
+    File_Name(url)
+
+
+if __name__ == "__main__":
+    main()
