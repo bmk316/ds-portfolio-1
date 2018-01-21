@@ -4,8 +4,8 @@
 
 #========================================================================================
 # Load raw data
-test <- read.csv("../test.csv", header=TRUE)
-train <- read.csv("../train.csv", header=TRUE)
+test <- read.csv("./test.csv", header=TRUE)
+train <- read.csv("./train.csv", header=TRUE)
 
 #========================================================================================
 
@@ -20,7 +20,7 @@ test.survived <- data.frame(Survived = rep("None", nrow(test)), test[,])
 # Combine data sets
 data.combined <- rbind(train, test.survived) 
 
-# Factos is a data type that structures it in categorize
+# Factor is a data type that structures it in categorize
 data.combined$Survived <- as.factor(data.combined$Survived)
 data.combined$Pclass <- as.factor(data.combined$Pclass)
 
@@ -47,6 +47,7 @@ library(ggplot2)
 
 train$Pclass <- as.factor(train$Pclass)
 
+
 # Pclass is the x-axis, color coordinate this on if they survived or not.
 ggplot(train, aes(x=Pclass, fill=factor(Survived))) +
   geom_bar(width=0.5) +
@@ -67,7 +68,8 @@ length(unique(data.combined$Name))
 
 # Finding the issue with the duplicate values
 
-# The 'which' is like the 'WHERE' clause in SQL, we only get the data that are duplicates in the Name column
+# The 'which' is like the 'WHERE' clause in SQL, and provies the index of the duplicate values
+# we only get the data that are duplicates in the Name column
 dup.names <- as.character(data.combined[which(duplicated(as.character(data.combined$Name))), "Name"])
 print(dup.names)
 
